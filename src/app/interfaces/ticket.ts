@@ -1,4 +1,5 @@
 export interface Ticket {
+    idTicket : number;
     estado : number; 
     /*-- Estado:0 Cerrado 
                 1 En Desarrollo
@@ -10,8 +11,8 @@ export interface Ticket {
                     3 Alta
     --*/
     idUsuario : number; 
-    idTicket : number;
-    Asunto : string;
-    categoria : number;
+    asunto : string;
     descripcion : string; 
+    categoria : number;
+    
 }
