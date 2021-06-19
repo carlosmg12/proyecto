@@ -13,6 +13,8 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { EditarTicketComponent } from './components/editar-ticket/editar-ticket.component';
 import { MisTicketsComponent } from './components/mis-tickets/mis-tickets.component';
 import { InterfaceAdminComponent } from './components/interface-admin/interface-admin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { InterfaceAdminComponent } from './components/interface-admin/interface-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

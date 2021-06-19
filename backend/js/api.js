@@ -22,9 +22,6 @@ connection.connect(function (error) {
     console.log("conexion realizada con exito");
 });
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get("/", function (req, res) {
-    res.send("hola mundo");
-});
 app.get("/tickets", function (req, res) {
     connection.query("SELECT * FROM tickets", function (req1, res1) {
         //res.send(res1);
@@ -70,6 +67,12 @@ app.put('/editarusuario/:id', function (req, res) {
     var contrasena = req.body.contrasena;
     connection.query("UPDATE usuarios SET nombre=?,apellido=?,rut=?,direccion=?,region=?,comuna=?,correo_electrico=?,contrasena=? WHERE idUsuario=?", [nombre, apellido, rut, direc, region, comuna, correo, contrasena, id], function (req1, res1) {
         res.status(200).send("usuario actualizado");
+    });
+});
+app.delete("borrarusuario/:id", function (req, res) {
+    var id = req.params.id;
+    connection.query("DELETE FROM usuarios WHERE idUsuario = ?", id, function (req1, res1) {
+        res.status(200).send("Usuario eliminado");
     });
 });
 app.listen(configServidor, function () {

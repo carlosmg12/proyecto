@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 
 const configServidor={
     servidor    : "127.0.0.1",
-    port        : 3000}
+    port        : 3000
+}
 
 let connection = mysql.createConnection({
     host        : "127.0.0.1",
@@ -24,10 +25,6 @@ connection.connect((error:any)=>{
 })
 
 app.use(bodyParser.urlencoded({ extended:false }));
-
-app.get("/",(req:any,res:any)=>{
-    res.send("hola mundo");
-});
 
 app.get("/tickets",(req:any,res:any)=>{
     connection.query("SELECT * FROM tickets",(req1:any,res1:any)=>{
@@ -77,6 +74,13 @@ app.put('/editarusuario/:id',(req:any,res:any)=>{
     let contrasena=req.body.contrasena;
     connection.query("UPDATE usuarios SET nombre=?,apellido=?,rut=?,direccion=?,region=?,comuna=?,correo_electrico=?,contrasena=? WHERE idUsuario=?",[nombre,apellido,rut,direc,region,comuna,correo,contrasena,id],(req1:any,res1:any)=>{
         res.status(200).send("usuario actualizado");
+    })
+});
+
+app.delete("borrarusuario/:id",(req:any,res:any)=>{
+    let id=req.params.id;
+    connection.query("DELETE FROM usuarios WHERE idUsuario = ?",id,(req1:any,res1:any)=>{
+        res.status(200).send("Usuario eliminado");
     })
 });
 
