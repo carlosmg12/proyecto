@@ -9,14 +9,14 @@
         <th>Correo electronico</th>
         <th>Id</th>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr *ngFor="let item of listaUsuarios">
+        <td>{{item.nombre}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.rut}}</td>
+        <td>{{item.direccion}}</td>
+        <td>{{item.region}}</td>
+        <td>{{item.comuna}}</td>
+        <td>{{item.correo}}</td>
+        <td>{{item.idUsuario}}</td>
     </tr>
 </table>

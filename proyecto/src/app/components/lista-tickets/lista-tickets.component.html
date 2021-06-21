@@ -1,1 +1,24 @@
-<p>lista-tickets works!</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Estado</th>
+        <th>Prioridad</th>
+        <th>Asunto</th>
+        <th>Descripción</th>
+        <th>Categoria</th>
+        <th>Id usuario</th>
+    </tr>
+    
+        <tr *ngFor="let item of listaTickets">
+            <button type="button" (click)="editarTicket(item.idTicket)" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">
+            <td>{{item.idTicket}}</td>
+            <td>{{item.estado}}</td>
+            <td>{{item.prioridad}}</td>
+            <td>{{item.asunto}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.categoria}}</td>
+            <td>{{item.idUsuario}}</td>
+        </button>
+        </tr>
+    
+</table>

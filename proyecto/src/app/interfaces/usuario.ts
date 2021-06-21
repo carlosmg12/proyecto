@@ -7,5 +7,5 @@ export interface Usuario {
     comuna: string;
     correo: string;
     contrasena: string;
-    idUsuario: string;
+    idUsuario: number;
 }

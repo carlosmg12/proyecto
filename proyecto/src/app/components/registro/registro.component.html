@@ -1,0 +1,66 @@
+<form [formGroup]="formulario">
+    <ul>
+        <br>
+        <li>
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre">
+            <div *ngIf="inputs.nombre.errors?.required && inputs.nombre.touched">Es necesario ingresar un nombre</div>
+        </li>
+        <br>
+        <li>
+            <label>Apellido</label>
+            <input type="text" formControlName="apellido">
+            <div *ngIf="inputs.apellido.errors?.required && inputs.apellido.touched">Es necesario ingresar un apellido</div>
+        </li>
+        <br>
+        <li>
+            <label>Rut</label>
+            <input type="text" formControlName="rut">
+            <div *ngIf="inputs.rut.errors?.required && inputs.rut.touched">Es necesario ingresar un rut</div>
+        </li>
+        <br>
+        <li>
+            <label>Dirección</label>
+            <input type="text" formControlName="direccion">
+            <div *ngIf="inputs.direccion.errors?.required && inputs.direccion.touched">Es necesario ingresar una direccion</div>
+        </li>
+        <li>
+            <label for="region">Region</label>
+            <select id="region">
+                <option>Seleccione la region</option>
+                <option value="1">Valparaiso</option>
+                <option value="2">Metropolitana</option>
+                <option value="3">Antofagasta</option>
+            </select>
+            <input type="text" formControlName="region">
+            <div *ngIf="inputs.region.errors?.required && inputs.region.touched">Es necesario ingresar una región</div>
+        </li>
+        <br>
+        <li>
+            <label for="comuna">Comuna</label>
+            <select id="comuna">
+
+            </select>
+            <input type="text" formControlName="comuna">
+            <div *ngIf="inputs.comuna.errors?.required && inputs.comuna.touched">Es necesario ingresar una comuna</div>
+        </li>
+        <br>
+        <br>
+        <li>
+            <label>Correo electronico</label>
+            <input type=text formControlName="correo">
+            <div *ngIf="inputs.correo.errors?.required && inputs.correo.touched">Es necesario ingresar un correo electronico</div>
+        </li>
+        <br>
+        <li>
+            <label>Ingrese una contraseña</label>
+            <input type=text formControlName="contrasena">
+            <div *ngIf="inputs.contrasena.errors?.required && inputs.contrasena.touched">Es necesario ingresar una contraseña</div>
+        </li>
+        <br>
+        <li>
+            <button [disabled]="formulario.invalid" type="button" (click)="crearUsuario()" [routerLink]="['/']" routerLinkActive="router-link-active">Crear usuario</button>
+        </li>
+    </ul>
+</form>
+

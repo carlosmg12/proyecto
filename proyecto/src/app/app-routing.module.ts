@@ -1,9 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ListaUsuariosComponent} from "./components/lista-usuarios/lista-usuarios.component";
+import {RegistroComponent} from "./components/registro/registro.component";
+import {HomeComponent} from "./components/home/home.component";
+import {CrearTicketComponent} from "./components/crear-ticket/crear-ticket.component";
+import {EditarTicketComponent} from "./components/editar-ticket/editar-ticket.component";
+import {ListaTicketsComponent} from "./components/lista-tickets/lista-tickets.component";
+
 
 const routes: Routes = [
-  {path:"listausuarios",component:ListaUsuariosComponent}
+  {path:"",component:HomeComponent},
+  {path:"registro",component:RegistroComponent},
+  {path:"listausuarios",component:ListaUsuariosComponent},
+  {path:"crearticket/:idUsuario",component:CrearTicketComponent},
+  {path:"editarticket/:idTicket",component:EditarTicketComponent},
+  {path:"listatickets",component:ListaTicketsComponent}
 ];
 
 @NgModule({

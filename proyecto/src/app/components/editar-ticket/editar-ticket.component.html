@@ -1,1 +1,45 @@
-<p>editar-ticket works!</p>
+<form [formGroup]="formulario">
+    <ul>
+        <br>
+        <li>
+            <label>Categoria</label>
+            <input type="text" formControlName="categoria">
+        </li>
+        <br>
+        <li>
+            <label>Asunto</label>
+            <input type="text" formControlName="asunto">
+        </li>
+        <br>
+        <li>
+            <label>Estado</label>
+            <select class="tipo" formControlName="estado">
+                <option value="">Selecciona un estado</option>
+                <option value="1">Abierto</option>
+                <option value="2">En desarrollo</option>
+                <option value="3">Cerrado</option>
+            </select>
+            <div *ngIf="inputs.estado.errors?.required && inputs.estado.touched">Es necesario seleccionar un estado</div>
+        </li>
+        <br>
+        <li>
+            <label>Descripción</label>
+            <input type=text formControlName="descripcion">
+        </li>
+        <br>
+        <li>
+            <label>Prioridad</label>
+            <select class="tipo" formControlName="prioridad">
+                <option value="">Selecciona un estado</option>
+                <option value="1">Alta</option>
+                <option value="2">Media</option>
+                <option value="3">Baja</option>
+            </select>
+            <div *ngIf="inputs.prioridad.errors?.required && inputs.prioridad.touched">Es necesario seleccionar una prioridad</div>
+        </li>
+        <br>
+        <li>
+            <button [disabled]="formulario.invalid" type="button" (click)="editarTicket()" [routerLink]="['/']" routerLinkActive="router-link-active">Actualizar</button>
+        </li>
+    </ul>
+</form>
