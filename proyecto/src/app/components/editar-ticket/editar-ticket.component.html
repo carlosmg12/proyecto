@@ -30,12 +30,18 @@
         <li>
             <label>Prioridad</label>
             <select class="tipo" formControlName="prioridad">
-                <option value="">Selecciona un estado</option>
+                <option value="">Selecciona una prioridad</option>
                 <option value="1">Alta</option>
                 <option value="2">Media</option>
                 <option value="3">Baja</option>
             </select>
             <div *ngIf="inputs.prioridad.errors?.required && inputs.prioridad.touched">Es necesario seleccionar una prioridad</div>
+        </li>
+        <br>
+        <li>
+            <label>Respuesta</label>
+            <input type=text formControlName="respuesta">
+            <div *ngIf="inputs.respuesta.errors?.required && inputs.respuesta.touched">Es necesario dar una respuesta</div>
         </li>
         <br>
         <li>

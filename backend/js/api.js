@@ -44,6 +44,7 @@ app.get("/listaTickets", bodyParser.json(), function (req, res) {
 app.get("/obtenerTicket/:id", bodyParser.json(), function (req, res) {
     console.log("si entra");
     var id = req.params.id;
+    console.log("idTicket en api", id);
     connection.query("SELECT * FROM tickets WHERE idTicket = ?", id, function (req1, res1) {
         //res.send(res1);
         res.status(200).send(JSON.stringify(res1));

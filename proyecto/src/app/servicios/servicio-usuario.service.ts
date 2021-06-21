@@ -27,12 +27,16 @@ export class ServicioUsuarioService {
     return this.servicio.get(`${this.servidor}/listaTickets`);
   }
 
-  obtenerTicket(idTicket:number){
-    console.log("idTicket",idTicket);
-    this.ticketEditar=this.servicio.get(`${this.servidor}/obtenerTicket/:${idTicket}`);
-    console.log(`${this.servidor}/obtenerTicket/:${idTicket}`);
-    console.log(1);
-    console.log(this.ticketEditar);
+  obtenerTicket(idTicket:number):Observable<any>{
+    /*console.log("idTicket",idTicket);
+    console.log(`${this.servidor}/obtenerTicket/:${idTicket}`);*/
+    //this.ticketEditar=this.servicio.get(`${this.servidor}/obtenerTicket/${idTicket}`);
+    //console.log("ticket editar servicio",this.ticketEditar);
+    return this.servicio.get(`${this.servidor}/obtenerTicket/${idTicket}`);
+  }
+
+  ticket(ticket:Ticket){
+    this.ticketEditar=ticket;
   }
 
   crearUsuario(usuario:Usuario):Observable<any>{
@@ -40,7 +44,12 @@ export class ServicioUsuarioService {
   }
 
   crearTicket(ticket:Ticket):Observable<any>{
+    console.log(`${this.servidor}/crearTicket/:${ticket.idUsuario}`);
     return this.servicio.post(`${this.servidor}/crearTicket/:${ticket.idUsuario}`,JSON.stringify(ticket),httpOptions);
+  }
+
+  actualizarTicket(ticket:Ticket):Observable<any>{
+    return this.servicio.put(`${this.servidor}/editarTcket/${ticket.idTicket}`,JSON.stringify(ticket),httpOptions);
   }
 
 }

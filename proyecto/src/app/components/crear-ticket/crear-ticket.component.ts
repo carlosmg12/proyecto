@@ -42,7 +42,7 @@ export class CrearTicketComponent implements OnInit {
   }
 
   crearTicket(){
-    let ticketNuevo:Ticket={idTicket:0,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario};
+    let ticketNuevo:Ticket={idTicket:0,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
     this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{
     });
     

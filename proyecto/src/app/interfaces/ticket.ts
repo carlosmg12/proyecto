@@ -14,5 +14,6 @@ export interface Ticket {
     asunto : string;
     descripcion : string; 
     categoria : number;
+    respuesta: string;
     
 }

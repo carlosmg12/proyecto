@@ -10,15 +10,18 @@
     </tr>
     
         <tr *ngFor="let item of listaTickets">
-            <button type="button" (click)="editarTicket(item.idTicket)" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">
-            <td>{{item.idTicket}}</td>
-            <td>{{item.estado}}</td>
-            <td>{{item.prioridad}}</td>
-            <td>{{item.asunto}}</td>
-            <td>{{item.descripcion}}</td>
-            <td>{{item.categoria}}</td>
-            <td>{{item.idUsuario}}</td>
-        </button>
+            <button type="button" (click)="editarTicket(item.idTicket,1)">
+                <td>{{item.idTicket}}</td>
+                <td>{{item.estado}}</td>
+                <td>{{item.prioridad}}</td>
+                <td>{{item.asunto}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.categoria}}</td>
+                <td>{{item.idUsuario}}</td>
+                <section *ngIf="opcionEditar==1 && item.idTicket==idBoton">
+                    <button type="button" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">Editar</button>
+                </section>
+            </button>
         </tr>
     
 </table>

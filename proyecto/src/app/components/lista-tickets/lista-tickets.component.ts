@@ -9,6 +9,9 @@ import { Ticket } from "../../interfaces/ticket"
 export class ListaTicketsComponent implements OnInit {
 
   listaTickets:Array<Ticket>=[];
+  ticketEditar:any;
+  opcionEditar:number=0;
+  idBoton:number=0;
 
   constructor(private servicioUsuario:ServicioUsuarioService) { }
 
@@ -20,8 +23,13 @@ export class ListaTicketsComponent implements OnInit {
     });
   }
 
-  editarTicket(idTicket:number){
-    this.servicioUsuario.obtenerTicket(idTicket);
+
+  editarTicket(idTicket:number,numero:number){
+    this.servicioUsuario.obtenerTicket(idTicket).subscribe(datos=>{
+      this.servicioUsuario.ticket(datos);
+    }); 
+    this.opcionEditar=numero;
+    this.idBoton=idTicket;
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Ticket} from "../../interfaces/ticket";
@@ -18,33 +18,40 @@ export class EditarTicketComponent implements OnInit {
   estado:any;
   descripcion:any;
   prioridad:any;
-  idUsuario:number=0;
+  respuesta:any;
+  idTicket:number=0;
 
   constructor(public fb:FormBuilder,private ruta:ActivatedRoute,private servicio:ServicioUsuarioService) {
+    console.log("ticket sin editar",this.servicio.ticketEditar[0]);
     this.formulario=this.fb.group({
-      categoria:[this.servicio.ticketEditar.categoria,[Validators.required]],
-      asunto:["",[Validators.required,Validators.maxLength(300)]],
-      estado:["",[Validators.required]],
-      descripcion:["",[Validators.required,Validators.maxLength(300)]],
-      prioridad:["",[Validators.required]],
+      categoria:[this.servicio.ticketEditar[0].categoria,[Validators.required]],
+      asunto:[this.servicio.ticketEditar[0].asunto,[Validators.required,Validators.maxLength(300)]],
+      estado:[this.servicio.ticketEditar[0].estado,[Validators.required]],
+      descripcion:[this.servicio.ticketEditar[0].descripcion,[Validators.required,Validators.maxLength(300)]],
+      prioridad:[this.servicio.ticketEditar[0].prioridad,[Validators.required]],
+      respuesta:["",[Validators.required,Validators.maxLength(500)]],
     });
    }
 
   ngOnInit(): void {
     this.ruta2=this.ruta.params.subscribe(parametros=>{
-      this.idUsuario=parametros["idTicket"];
+      this.idTicket=parametros["idTicket"];
+      console.log("idticket justo antes de actualizar",this.idTicket)
     });
     this.categoria=this.formulario.get("categoria") as FormGroup;
     this.asunto=this.formulario.get("asunto") as FormGroup;
     this.estado=this.formulario.get("estado") as FormGroup;
     this.descripcion=this.formulario.get("descripcion") as FormGroup;
     this.prioridad=this.formulario.get("prioridad") as FormGroup;
+    this.respuesta=this.formulario.get("respuesta") as FormGroup;
+    console.log("prioridad",this.prioridad);
+    console.log("estado",this.estado);
   }
 
   editarTicket(){
-    let ticketNuevo:Ticket={idTicket:0,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad,idUsuario:this.idUsuario};
-    
-    this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{
+    let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
+    console.log("ticket listo para actualizar",ticketNuevo);
+    this.servicio.actualizarTicket(ticketNuevo).subscribe(datos=>{
       console.log(datos);
     });
     
