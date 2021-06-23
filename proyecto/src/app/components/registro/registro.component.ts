@@ -16,22 +16,22 @@ export class RegistroComponent implements OnInit {
   rut:any;
   direccion:any;
   region:any;
-  //arregion:Array<any>=[];
   comuna:any;
   correo:any;
-  contrasena:any; 
-    regionSelect : any;
-    //comunas : {};  
-    /*regiones : [{
-      id: 1, name: 'Metropolitana', comunas: ['Santiago','Conchali','Huechuraba']
-    },
-    {
-      id:2, name: 'Valparaiso', comunas: ['Valparaiso','Vina del Mar','Quilpue']
-    },
-    {
-      id:3, name: 'Antofagasta', comunas: ['PilPil','LleoLleo','nosemas']
-    },
-    ];  */
+  contrasena:any;
+
+  cities:Array<any> = [];
+
+  countries = [{
+    id: 1, name: 'France', cities: ['Paris', 'Marseille', 'Nice']
+  },
+  {
+    id: 2, name: 'Germany', cities: ['Hamburg', 'Berlin', 'Munich']
+  },
+  {
+    id: 3, name: 'Italy', cities: ['Roma', 'Milan', 'Napoli']
+  },
+  ];
 
   constructor(public fb:FormBuilder,private servicio:ServicioUsuarioService) {
     this.formulario=this.fb.group({
@@ -39,55 +39,44 @@ export class RegistroComponent implements OnInit {
       apellido:["",[Validators.required,Validators.maxLength(20)]],
       rut:["",[Validators.required,Validators.maxLength(10)]],
       direccion:["",[Validators.required,Validators.maxLength(100)]],
-      //region:["",[Validators.required,Validators.maxLength(30)]],
-      //comuna:["",[Validators.required,Validators.maxLength(20)]],
+      region:["",[Validators.required,Validators.maxLength(30)]],
+      comuna:["",[Validators.required,Validators.maxLength(20)]],
       correo:["",[Validators.required,Validators.maxLength(100)]],
       contrasena:["",[Validators.required,Validators.maxLength(200)]],
     });
    }
 
   ngOnInit(): void {
+    this.cities = this.countries.filter(x => x.id == 1)[0].cities;
     this.nombre=this.formulario.get("nombre") as FormGroup;
     this.apellido=this.formulario.get("apellido") as FormGroup;
     this.rut=this.formulario.get("rut") as FormGroup;
     this.direccion=this.formulario.get("direccion") as FormGroup;
-    //this.region=this.formulario.get("region") as FormGroup;
-    this.region="valpo";
-    //let region=document.getElementById("region");
-    //region?.addEventListener("change",this.llenarSelect);
-    //this.comunas=this.regiones.filter(x => x.id == 1)[0].comunas;
-    //this.comuna=this.formulario.get("comuna") as FormGroup;
-    this.comuna="valpo";
+    this.region=this.formulario.get("region") as FormGroup;
+    this.comuna=this.formulario.get("comuna") as FormGroup;
     this.correo=this.formulario.get("correo") as FormGroup;
     this.contrasena=this.formulario.get("contrasena") as FormGroup;
   }
 
-  /*onChange(deviceValue) {
-    this.comunas = this.regiones.filter(x => x.id == deviceValue)[0].comunas;
-  }*/
-
   crearUsuario(){
-    let usuarioNuevo:Usuario={idUsuario:0,nombre:this.nombre.value,apellido:this.apellido.value,rut:this.rut.value,direccion:this.direccion.value,region:this.region,comuna:this.comuna,correo:this.correo.value,contrasena:this.contrasena.value};
-    
+    console.log("region",this.region);
+    let usuarioNuevo:Usuario={idUsuario:0,nombre:this.nombre.value,apellido:this.apellido.value,rut:this.rut.value,direccion:this.direccion.value,region:this.region,comuna:this.comuna.value,correo:this.correo.value,contrasena:this.contrasena.value,rol:"usuarioCliente"};
+    console.log("usuario",usuarioNuevo);
     this.servicio.crearUsuario(usuarioNuevo).subscribe(datos=>{
       console.log(datos);
     });
-    
   }
 
-  /*llenarSelect(event:any){
-    let variable = ["comuna 1", "comuna 2", "comuna 3", "comuna 4"];
-    let i; 
-    let comuna = document.getElementById("comuna");
-    if(event.target.value==1){
-        for(i=0;i<variable.length;i++) {
-          let option = document.createElement("option");
-          option.text = variable[i];
-          comuna?.(option);
-        }
-    }
-  }*/
   get inputs(){
       return this.formulario.controls;
+  }
+
+  getValue(event: Event) :any{
+    return this.onChange( (event.target as HTMLInputElement).value);
+  }
+
+  onChange(deviceValue:any):any {
+    this.cities = this.countries.filter(x => x.id == deviceValue)[0].cities;
+    return this.region=this.countries[deviceValue-1].name;
   }
 }

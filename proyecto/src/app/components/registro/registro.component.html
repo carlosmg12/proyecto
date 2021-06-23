@@ -25,26 +25,19 @@
             <div *ngIf="inputs.direccion.errors?.required && inputs.direccion.touched">Es necesario ingresar una direccion</div>
         </li>
         <li>
-            <label for="region">Region</label>
-            <select id="region">
-                <option>Seleccione la region</option>
-                <option value="1">Valparaiso</option>
-                <option value="2">Metropolitana</option>
-                <option value="3">Antofagasta</option>
+            <label>Región</label>
+            <select formControlName="region" (change)="region=getValue($event)" >
+                <option *ngFor="let country of countries"  [value]="country.id">{{country.name}}</option>
             </select>
-            <input type="text" formControlName="region">
-            <div *ngIf="inputs.region.errors?.required && inputs.region.touched">Es necesario ingresar una región</div>
+                <div *ngIf="inputs.region.errors?.required && inputs.region.touched">Es necesario ingresar una región</div>
         </li>
-        <br>
-        <li>
-            <label for="comuna">Comuna</label>
-            <select id="comuna">
-
+        <li>   
+            <label>Comuna</label>
+            <select formControlName="comuna">
+                <option *ngFor="let city of cities" [value]="city">{{city}}</option>
             </select>
-            <input type="text" formControlName="comuna">
             <div *ngIf="inputs.comuna.errors?.required && inputs.comuna.touched">Es necesario ingresar una comuna</div>
         </li>
-        <br>
         <br>
         <li>
             <label>Correo electronico</label>

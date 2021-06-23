@@ -16,6 +16,7 @@ import { InterfaceAdminComponent } from './components/interface-admin/interface-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
+import { InterfazUsuarioComponent } from './components/interfaz-usuario/interfaz-usuario.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     ListaUsuariosComponent,
     EditarTicketComponent,
     MisTicketsComponent,
-    InterfaceAdminComponent
+    InterfaceAdminComponent,
+    InterfazUsuarioComponent
   ],
   imports: [
     BrowserModule,

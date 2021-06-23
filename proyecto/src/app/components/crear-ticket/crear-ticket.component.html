@@ -40,7 +40,7 @@
         </li>
         <br>
         <li>
-            <button [disabled]="formulario.invalid" type="button" (click)="crearTicket()" [routerLink]="['/']" routerLinkActive="router-link-active">Actualizar</button>
+            <button [disabled]="formulario.invalid" type="button" (click)="crearTicket()" [routerLink]="['/mistickets',idUsuario]" routerLinkActive="router-link-active">Actualizar</button>
         </li>
     </ul>
 </form>

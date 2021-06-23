@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import { ServicioUsuarioService } from "../../servicios/servicio-usuario.service";
 import { Ticket } from "../../interfaces/ticket"
+import { Usuario } from 'src/app/interfaces/usuario';
 @Component({
   selector: 'app-lista-tickets',
   templateUrl: './lista-tickets.component.html',
@@ -12,15 +14,30 @@ export class ListaTicketsComponent implements OnInit {
   ticketEditar:any;
   opcionEditar:number=0;
   idBoton:number=0;
+  ruta2:any;
+  idUsuario:number=0;
+  usuarioActual:any={};
 
-  constructor(private servicioUsuario:ServicioUsuarioService) { }
+  constructor(private servicioUsuario:ServicioUsuarioService,private ruta:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.ruta2=this.ruta.params.subscribe(parametros=>{
+      this.idUsuario=parametros["idUsuario"];
+      console.log("idUsuario de esta pagina",this.idUsuario)
+    });
+    this.servicioUsuario.obtenerUsuario(this.idUsuario).subscribe(datos=>{
+      console.log("datos",datos[0]);
+      this.usuarioActual=datos[0];
+      console.log("usuario",this.usuarioActual);
+    });
+    console.log("usuario1",this.usuarioActual);
+    
     this.servicioUsuario.listarTickets().subscribe(datos=>{
       for(let i=0;i<datos.length;i++){
         this.listaTickets.push(datos[i]);
       }
     });
+    console.log("lista",this.listaTickets);
   }
 
 

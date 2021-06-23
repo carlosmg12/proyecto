@@ -47,10 +47,16 @@ app.get("/listaTickets",bodyParser.json(),(req:any,res:any)=>{
     });
 });
 
-app.get("/obtenerTicket/:id",bodyParser.json(),(req:any,res:any)=>{
-    console.log("si entra");
+app.get("/obtenerTicketsUsuario/:id",bodyParser.json(),(req:any,res:any)=>{
     let id=req.params.id;
-    console.log("idTicket en api",id);
+    connection.query("SELECT * FROM tickets WHERE idUsuario = ?",id,(req1:any,res1:any)=>{
+        //res.send(res1);
+        res.status(200).send(JSON.stringify(res1));
+    });
+});
+
+app.get("/obtenerTicket/:id",bodyParser.json(),(req:any,res:any)=>{
+    let id=req.params.id;
     connection.query("SELECT * FROM tickets WHERE idTicket = ?",id,(req1:any,res1:any)=>{
         //res.send(res1);
         res.status(200).send(JSON.stringify(res1));
@@ -90,6 +96,14 @@ app.post('/crearUsuario',bodyParser.json(),(req:any,res:any)=>{
     connection.query("INSERT INTO usuarios(nombre,apellido,rut,direccion,region,comuna,correo_electrico,contrasena)VALUES('"+nombre+"','"+apellido+"','"+rut+"','"+direccion+"','"+region+"','"+comuna+"','"+correo+"','"+contrasena+"')",(req1:any,res1:any)=>{
         res.status(201).send(JSON.stringify("usuario creado de pana mi rey su valorant"));
     })
+});
+
+app.get("/obtenerUsuario/:id",bodyParser.json(),(req:any,res:any)=>{
+    let id=req.params.id;
+    connection.query("SELECT * FROM usuarios WHERE idUsuario = ?",id,(req1:any,res1:any)=>{
+        //res.send(res1);
+        res.status(200).send(JSON.stringify(res1));
+    });
 });
 
 app.get("/listaUsuarios",bodyParser.json(),(req:any,res:any)=>{

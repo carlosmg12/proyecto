@@ -28,11 +28,11 @@ export class ServicioUsuarioService {
   }
 
   obtenerTicket(idTicket:number):Observable<any>{
-    /*console.log("idTicket",idTicket);
-    console.log(`${this.servidor}/obtenerTicket/:${idTicket}`);*/
-    //this.ticketEditar=this.servicio.get(`${this.servidor}/obtenerTicket/${idTicket}`);
-    //console.log("ticket editar servicio",this.ticketEditar);
     return this.servicio.get(`${this.servidor}/obtenerTicket/${idTicket}`);
+  }
+
+  obtenerUsuario(idUsuario:number):Observable<any>{
+    return this.servicio.get(`${this.servidor}/obtenerUsuario/${idUsuario}`);
   }
 
   ticket(ticket:Ticket){

@@ -8,4 +8,5 @@ export interface Usuario {
     correo: string;
     contrasena: string;
     idUsuario: number;
+    rol:string;
 }
