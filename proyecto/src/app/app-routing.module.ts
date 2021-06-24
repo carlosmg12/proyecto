@@ -7,6 +7,7 @@ import {CrearTicketComponent} from "./components/crear-ticket/crear-ticket.compo
 import {EditarTicketComponent} from "./components/editar-ticket/editar-ticket.component";
 import {ListaTicketsComponent} from "./components/lista-tickets/lista-tickets.component";
 import {MisTicketsComponent} from "./components/mis-tickets/mis-tickets.component";
+import {InterfaceAdminComponent} from "./components/interface-admin/interface-admin.component";
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:"crearticket/:idUsuario",component:CrearTicketComponent},
   {path:"editarticket/:idTicket",component:EditarTicketComponent},
   {path:"listatickets/:idUsuario",component:ListaTicketsComponent},
-  {path:"mistickets/:idUsuario",component:MisTicketsComponent}
+  {path:"mistickets/:idUsuario",component:MisTicketsComponent},
+  {path:"interfazadmin",component:InterfaceAdminComponent},
 
 ];
 
