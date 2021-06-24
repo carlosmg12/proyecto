@@ -62,7 +62,8 @@
                                                     <option *ngFor="let city of cities" [value]="city">{{city}}</option>
                                                 </select>
                                             </div>
-                                            <input type="submit" class="btnRegister"  value="Crear usuario" (click)="crearUsuario()" [routerLink]="['/']" routerLinkActive="router-link-active"/>
+                                            <button [disabled]="formulario.invalid" class="btnRegister" type="button" (click)="crearUsuario()" [routerLink]="['/']" routerLinkActive="router-link-active">Crear usuario</button>
+                                            <!--<input type="submit" class="btnRegister"  value="Crear usuario" (click)="crearUsuario()" [routerLink]="['/']" routerLinkActive="router-link-active"/>-->
                                         </div>
                                     </div>
                                 </div>

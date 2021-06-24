@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Usuario } from "../interfaces/usuario";
 import { Ticket } from "../interfaces/ticket";
@@ -15,9 +15,18 @@ export class ServicioUsuarioService {
 
   ticketEditar:any;
 
-  servidor="http://127.0.0.1:3000";
+  servidor="http://127.0.0.1:3001";
 
   constructor(private servicio:HttpClient) { }
+
+  validarLogin(correo:string,pass:string):Observable<any>{
+    let headers=new HttpHeaders();
+    headers.append("Content-Type","application/json");
+    const params=new HttpParams();
+    params.set("correo",correo);
+    params.set("pass",pass);
+    return this.servicio.get(`${this.servidor}/login`,{params:params});
+  }
 
   listarUsuarios():Observable<any>{
     return this.servicio.get(`${this.servidor}/listaUsuarios`);
@@ -40,6 +49,7 @@ export class ServicioUsuarioService {
   }
 
   crearUsuario(usuario:Usuario):Observable<any>{
+    console.log("usuarioServicio",usuario);
     return this.servicio.post(`${this.servidor}/crearUsuario`,JSON.stringify(usuario),httpOptions);
   }
 

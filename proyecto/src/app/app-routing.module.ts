@@ -8,6 +8,7 @@ import {EditarTicketComponent} from "./components/editar-ticket/editar-ticket.co
 import {ListaTicketsComponent} from "./components/lista-tickets/lista-tickets.component";
 import {MisTicketsComponent} from "./components/mis-tickets/mis-tickets.component";
 import {InterfaceAdminComponent} from "./components/interface-admin/interface-admin.component";
+import {InterfazUsuarioComponent} from "./components/interfaz-usuario/interfaz-usuario.component";
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"listatickets/:idUsuario",component:ListaTicketsComponent},
   {path:"mistickets/:idUsuario",component:MisTicketsComponent},
   {path:"interfazadmin",component:InterfaceAdminComponent},
+  {path:"interfazcliente",component:InterfazUsuarioComponent},
 
 ];
 

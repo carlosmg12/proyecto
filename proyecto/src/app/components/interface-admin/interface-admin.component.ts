@@ -10,6 +10,10 @@ export class InterfaceAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //let datos=JSON.parse(localStorage.getItem("recuerdame"));
+    //if(!datos){
+      //window.location.href="/";
+    //}
   }
 
 }

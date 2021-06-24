@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 const configServidor={
     servidor    : "127.0.0.1",
-    port        : 3000
+    port        : 3001
 }
 
 let connection = mysql.createConnection({
@@ -27,6 +27,7 @@ connection.connect((error:any)=>{
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended:false }));
+
 
 app.post('/crearTicket/:idUsuario',bodyParser.json(),(req:any,res:any)=>{
     let estado=req.body.estado;
@@ -93,9 +94,25 @@ app.post('/crearUsuario',bodyParser.json(),(req:any,res:any)=>{
     let comuna=req.body.comuna;
     let correo=req.body.correo;
     let contrasena=req.body.contrasena;
-    connection.query("INSERT INTO usuarios(nombre,apellido,rut,direccion,region,comuna,correo_electrico,contrasena)VALUES('"+nombre+"','"+apellido+"','"+rut+"','"+direccion+"','"+region+"','"+comuna+"','"+correo+"','"+contrasena+"')",(req1:any,res1:any)=>{
+    let rol=req.body.rol;
+    connection.query("INSERT INTO usuarios(nombre,apellido,rut,direccion,region,comuna,correo_electronico,contrasena,rol)VALUES('"+nombre+"','"+apellido+"','"+rut+"','"+direccion+"','"+region+"','"+comuna+"','"+correo+"',MD5('"+contrasena+"'),'"+rol+"')",(req1:any,res1:any)=>{
         res.status(201).send(JSON.stringify("usuario creado de pana mi rey su valorant"));
     })
+});
+
+app.get('/login',(req:any,res:any)=>{
+    const correo=req.query.correo;
+    const pass=req.query.pass;
+    connection.query("SELECT idUsuario,correo_electronico FROM usuarios WHERE correo_electronico = ? AND contrasena=md5(?)",[correo,pass],(error:any,res1:any,fields:any)=>{
+        //res.send(res1);
+        if(error){
+            throw(error);
+        }
+        else{
+            res.status(200).send(JSON.stringify(res1));
+        }
+        
+    });
 });
 
 app.get("/obtenerUsuario/:id",bodyParser.json(),(req:any,res:any)=>{
@@ -122,7 +139,7 @@ app.put('/editarUsuario/:id',bodyParser.json(),(req:any,res:any)=>{
     let comuna=req.body.comuna;
     let correo=req.body.correo;
     let contrasena=req.body.contrasena;
-    connection.query("UPDATE usuarios SET nombre=?,apellido=?,rut=?,direccion=?,region=?,comuna=?,correo_electrico=?,contrasena=? WHERE idUsuario=?",[nombre,apellido,rut,direc,region,comuna,correo,contrasena,id],(req1:any,res1:any)=>{
+    connection.query("UPDATE usuarios SET nombre=?,apellido=?,rut=?,direccion=?,region=?,comuna=?,correo_electronico=?,contrasena=? WHERE idUsuario=?",[nombre,apellido,rut,direc,region,comuna,correo,contrasena,id],(req1:any,res1:any)=>{
         res.status(200).send(JSON.stringify("usuario actualizado"));
     })
 });
