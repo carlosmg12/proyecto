@@ -103,8 +103,7 @@ app.post('/crearUsuario',bodyParser.json(),(req:any,res:any)=>{
 app.get('/login',(req:any,res:any)=>{
     const correo=req.query.correo;
     const pass=req.query.pass;
-    connection.query("SELECT idUsuario,correo_electronico FROM usuarios WHERE correo_electronico = ? AND contrasena=md5(?)",[correo,pass],(error:any,res1:any,fields:any)=>{
-        //res.send(res1);
+    connection.query("SELECT idUsuario,correo_electronico,rol FROM usuarios WHERE correo_electronico = ? AND contrasena=md5(?)",[correo,pass],(error:any,res1:any,fields:any)=>{
         if(error){
             throw(error);
         }

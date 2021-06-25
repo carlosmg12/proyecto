@@ -25,7 +25,7 @@ export class ServicioUsuarioService {
     const params=new HttpParams();
     params.set("correo",correo);
     params.set("pass",pass);
-    return this.servicio.get(`${this.servidor}/login`,{params:params});
+    return this.servicio.get(`${this.servidor}/login?correo=${correo}&pass=${pass}`);
   }
 
   listarUsuarios():Observable<any>{

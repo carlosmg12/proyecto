@@ -1,6 +1,5 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <form [formGroup]="formulario" (ngSubmit)="ingresar()">
     <div class="login-wrap">
@@ -26,7 +25,7 @@
                     <br>
                     <div class="group">
                         <!--<button [disabled]="formulario.invalid" class="button" type="button" [routerLink]="['/interfazcliente']" routerLinkActive="router-link-active">Iniciar sesión</button>-->
-                        <button type="submit" [disabled]="formulario.invalid" class="button" [routerLink]="['/interfazcliente']" routerLinkActive="router-link-active">Iniciar sesión</button>
+                        <button type="submit" [disabled]="formulario.invalid" class="button">Iniciar sesión</button>
                     </div>
                     <div class="hr"></div>
                 </div>
@@ -34,7 +33,7 @@
                     <br><br><br>
                     <br><br><br>
                     <div class="group">
-                        <input type="submit" class="button" value="Registrate Ahora!" [routerLink]="['/registro']" routerLinkActive="router-link-active">
+                        <button type="button" class="button" (click)="registro()">Registrate Ahora!</button>
                     </div>
                     <div class="hr"></div>
                 </div>
