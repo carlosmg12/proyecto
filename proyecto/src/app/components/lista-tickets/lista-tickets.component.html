@@ -1,4 +1,4 @@
-<table>
+<!--<table>
     <tr>
         <th>Id</th>
         <th>Estado</th>
@@ -24,4 +24,68 @@
             </button>
         </tr>
     
-</table>
+</table>-->
+<div id="BigBox">
+    <div id= "Abiertas">
+        <ul class="list-group" *ngFor="let item of listaTickets">
+            <li class="list-group-item" *ngIf="item.prioridad == 1">
+                <button type="button" (click)="editarTicket(item.idTicket,1)">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header">Prioridad: Alta</div>
+                        <div class="card-body">
+                            <p class="card-text">{{item.categoria}}</p>
+                            <h5 class="card-title">{{item.asunto}}</h5>
+                            <p class="card-text">{{item.descripcion}}</p>
+                            <h6 class="card-subtitle">{{item.estado}}</h6>
+                            <p class="card-text">{{item.respuesta}}</p>
+                            
+                            <section *ngIf="opcionEditar==1 && item.idTicket==idBoton">
+                                <button type="button" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">Editar</button>
+                            </section>
+                        </div>
+                    </div>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div id= "EnProceso">
+        <ul class="list-group" *ngFor="let item of listaTickets">
+                <li class="list-group-item" *ngIf="item.prioridad == 2">
+                    <button type="button" (click)="editarTicket(item.idTicket,1)">
+                        <div class="card text-white bg-primary mb-3">
+                            <div class="card-header">Prioridad: Media</div>
+                            <div class="card-body">
+                            <p class="card-text">{{item.categoria}}</p>
+                            <h5 class="card-title">{{item.asunto}}</h5>
+                            <p class="card-text">{{item.descripcion}}</p>
+                            <h6 class="card-subtitle">{{item.estado}}</h6>
+                            <p class="card-text">{{item.respuesta}}</p>
+                                <section *ngIf="opcionEditar==1 && item.idTicket==idBoton">
+                                    <button type="button" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">Editar</button>
+                                </section>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+        </ul>
+    </div>
+    <br>
+    <div id= "Cerrada">
+        <ul class="list-group" *ngFor="let item of listaTickets">
+            <li class="list-group-item" *ngIf="item.prioridad == 3">
+                <button type="button" (click)="editarTicket(item.idTicket,1)">
+                <div class="card text-white bg-danger  mb-3">
+                    <div class="card-header">Prioridad: Baja</div>
+                    <div class="card-body">
+                        <p class="card-text">{{item.categoria}}</p>
+                        <h5 class="card-title">{{item.asunto}}</h5>
+                        <p class="card-text">{{item.descripcion}}</p>
+                        <h6 class="card-subtitle">{{item.estado}}</h6>
+                        <p class="card-text">{{item.respuesta}}</p>
+                        <section *ngIf="opcionEditar==1 && item.idTicket==idBoton">
+                            <button type="button" [routerLink]="['/editarticket',item.idTicket]" routerLinkActive="router-link-active" class="ticket">Editar</button>
+                        </section>
+                    </div>
+                

@@ -21,6 +21,11 @@ export class ListaTicketsComponent implements OnInit {
   constructor(private servicioUsuario:ServicioUsuarioService,private ruta:ActivatedRoute) { }
 
   ngOnInit(): void {
+    let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
+    console.log("datos admin",inicio);
+    if(inicio.correo==undefined){
+      window.location.href="/";
+    }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idUsuario=parametros["idUsuario"];
       console.log("idUsuario de esta pagina",this.idUsuario)

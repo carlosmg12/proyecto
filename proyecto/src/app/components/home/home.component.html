@@ -2,6 +2,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <form [formGroup]="formulario" (ngSubmit)="ingresar()">
+    <br><br><br><br>
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Iniciar Sesion</label>
@@ -18,7 +19,7 @@
                     </div>
                     <div class="checkbox">
                         <label class="label">
-                            <input name="remember" type="checkbox" value="Remember Me"> Recordarme
+                            <input name="remember" type="checkbox" formControlName="remember"> Recordarme
                         </label>
                     </div>
                     <br>
@@ -35,6 +36,7 @@
                     <div class="group">
                         <button type="button" class="button" (click)="registro()">Registrate Ahora!</button>
                     </div>
+                    <br><br><br><br><br><br>
                     <div class="hr"></div>
                 </div>
             </div>

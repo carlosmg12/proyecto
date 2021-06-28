@@ -31,17 +31,22 @@ export class CrearTicketComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
+    if(inicio.correo==undefined){
+      window.location.href="/";
+    }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idUsuario=parametros["idUsuario"];
     });
     this.categoria=this.formulario.get("categoria") as FormGroup;
     this.asunto=this.formulario.get("asunto") as FormGroup;
-    this.estado=this.formulario.get("estado") as FormGroup;
+    //this.estado=this.formulario.get("estado") as FormGroup;
     this.descripcion=this.formulario.get("descripcion") as FormGroup;
     this.prioridad=this.formulario.get("prioridad") as FormGroup;
   }
 
   crearTicket(){
+    this.estado="Abierto"
     let ticketNuevo:Ticket={idTicket:0,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
     this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{
     });

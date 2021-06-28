@@ -12,4 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goToHome(){
+    console.log("buena weon");
+  }
 }

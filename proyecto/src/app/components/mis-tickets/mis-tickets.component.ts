@@ -10,6 +10,11 @@ export class MisTicketsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
+    console.log("datos admin",inicio);
+    if(inicio.correo==undefined){
+      window.location.href="/";
+    }
   }
 
 }

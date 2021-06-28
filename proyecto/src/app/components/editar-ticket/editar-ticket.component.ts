@@ -34,6 +34,11 @@ export class EditarTicketComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
+    console.log("datos admin",inicio);
+    if(inicio.correo==undefined){
+      window.location.href="/";
+    }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idTicket=parametros["idTicket"];
       console.log("idticket justo antes de actualizar",this.idTicket)
@@ -49,6 +54,15 @@ export class EditarTicketComponent implements OnInit {
   }
 
   editarTicket(){
+    if(this.estado==1){
+      this.estado="Abierto";
+    }
+    if(this.estado==2){
+      this.estado="En desarrollo";
+    }
+    else{
+      this.estado="Cerrado";
+    }
     let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
     console.log("ticket listo para actualizar",ticketNuevo);
     this.servicio.actualizarTicket(ticketNuevo).subscribe(datos=>{

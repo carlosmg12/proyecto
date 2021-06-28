@@ -1,0 +1,32 @@
+#BigBox {
+    display: flex;
+    text-align: center;
+    min-height: 86.7%;
+  }
+  
+  button.Bproc {
+    width: 100%;
+    background-color: transparent;
+    border-style: none;
+  }
+  
+  #Abiertas {
+    margin: auto;
+    padding-right: 15px;
+    width: 30%;
+  }
+  
+  #EnProceso {
+    margin: auto;
+    width: 30%;
+  }
+  
+  #Cerrada {
+    margin: auto;
+    padding-left: 15px;
+    width: 30%;
+  }
+  
+  ul li {
+    list-style-type: none;
+  }

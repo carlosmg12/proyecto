@@ -17,11 +17,10 @@ const routes: Routes = [
   {path:"listausuarios",component:ListaUsuariosComponent},
   {path:"crearticket/:idUsuario",component:CrearTicketComponent},
   {path:"editarticket/:idTicket",component:EditarTicketComponent},
-  {path:"listatickets/:idUsuario",component:ListaTicketsComponent},
+  {path:"listatickets",component:ListaTicketsComponent},
   {path:"mistickets/:idUsuario",component:MisTicketsComponent},
-  {path:"interfazadmin",component:InterfaceAdminComponent},
-  {path:"interfazcliente",component:InterfazUsuarioComponent},
-
+  {path:"interfazadmin/:idUsuario",component:InterfaceAdminComponent},
+  {path:"interfazcliente/:idUsuario",component:InterfazUsuarioComponent},
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { InterfazUsuarioComponent } from './components/interfaz-usuario/interfaz-usuario.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxCaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,43 +10,65 @@ import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 })
 export class HomeComponent implements OnInit {
 
+  //siteKey:string;
+
   formulario:FormGroup;
   correo:any;
   contrasena:any;
   mensaje:string="";
+  remember:any;
 
   constructor(public fb:FormBuilder,private servicio:ServicioUsuarioService,private ruta:Router) { 
+    //this.siteKey="6Lfw3VsbAAAAAKonUNmHAQqd2ejXo12n-KOkWioE";
+    //this.siteKey='6LdRNVwbAAAAAEEfvhSOwCG3WLOE8V74XuAz1v9Q';
+    //this.siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
     this.formulario=this.fb.group({
       correo:["",[Validators.required,Validators.maxLength(100)]],
       contrasena:["",[Validators.required,Validators.maxLength(200)]],
+      remember:[""],
+      captcha:[],
     });
   }
 
   ngOnInit(): void {
     this.correo=this.formulario.get("correo") as FormGroup;
     this.contrasena=this.formulario.get("contrasena") as FormGroup;
-    //let datos=JSON.parse(localStorage.getItem("recuerdame"));
-    //if(datos && datos.correo){
+    this.remember=this.formulario.get("remember") as FormGroup;
+    let datos=JSON.parse(localStorage.getItem("recuerdame") || '{}');
+    if(datos && datos.correo){
+      if(datos.rol=="usuarioCliente"){
+        this.ruta.navigate([`/interfazcliente/${datos.idUsuario}`]);
+      }
+      else{
+        this.ruta.navigate([`/interfazadmin/${datos.idUsuario}`]);
+      }
       //window.location.href="/registro";
-    //}
+    }
   }
+
   ingresar(){
+    
+    console.log("remember",this.remember.value);
     this.servicio.validarLogin(this.correo.value,this.contrasena.value).subscribe(datos=>{
       if(datos.length==0){
         this.mensaje="Correo y/o contraseña incorrectos";
       }
       else{
-        console.log(datos);
-        localStorage.setItem('recuerdame',JSON.stringify({"correo":this.correo.value,"idUsuario":datos[0].idUsuario}));
-        if(datos[0].rol=="usuarioCliente"){
-          this.ruta.navigate(['/interfazcliente']);
-        }
-        else{
-          this.ruta.navigate(['/interfazadmin']);
+        sessionStorage.setItem('session',JSON.stringify({"correo":datos[0].correo_electronico,"idUsuario":datos[0].idUsuario,"rol":datos[0].rol}));
+        if(this.remember.value==true){
+          localStorage.setItem('recuerdame',JSON.stringify({"correo":datos[0].correo_electronico,"idUsuario":datos[0].idUsuario,"rol":datos[0].rol}));
         }
       }
+      if(datos[0].rol=="usuarioCliente"){
+        this.ruta.navigate([`/interfazcliente/${datos[0].idUsuario}`]);
+      }
+      else{
+        this.ruta.navigate([`/interfazadmin/${datos[0].idUsuario}`]);
+      }
+      
     });
   }
+
   registro(){
     this.ruta.navigate(['/registro']);
   }

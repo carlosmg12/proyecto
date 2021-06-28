@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-interface-admin',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterfaceAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    //let datos=JSON.parse(localStorage.getItem("recuerdame"));
-    //if(!datos){
-      //window.location.href="/";
-    //}
+    let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
+    if(inicio.correo==undefined){
+      window.location.href="/";
+    }
   }
 
+  listaTickets(){
+    this.router.navigate(["/listatickets"]);
+  }
 }
