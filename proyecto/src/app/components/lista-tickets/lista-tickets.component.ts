@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { ServicioUsuarioService } from "../../servicios/servicio-usuario.service";
 import { Ticket } from "../../interfaces/ticket"
-import { Usuario } from 'src/app/interfaces/usuario';
 @Component({
   selector: 'app-lista-tickets',
   templateUrl: './lista-tickets.component.html',

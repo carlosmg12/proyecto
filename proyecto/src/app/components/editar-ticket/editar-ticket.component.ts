@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Ticket} from "../../interfaces/ticket";
+import {Ticket,estados} from "../../interfaces/ticket";
 import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 
 @Component({
@@ -54,16 +54,8 @@ export class EditarTicketComponent implements OnInit {
   }
 
   editarTicket(){
-    if(this.estado==1){
-      this.estado="Abierto";
-    }
-    if(this.estado==2){
-      this.estado="En desarrollo";
-    }
-    else{
-      this.estado="Cerrado";
-    }
-    let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
+    let estadoString=estados[this.estado.value];
+    let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:estadoString,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
     console.log("ticket listo para actualizar",ticketNuevo);
     this.servicio.actualizarTicket(ticketNuevo).subscribe(datos=>{
       console.log(datos);
@@ -72,6 +64,6 @@ export class EditarTicketComponent implements OnInit {
   }
   get inputs(){
     return this.formulario.controls;
-}
+  }
 
 }

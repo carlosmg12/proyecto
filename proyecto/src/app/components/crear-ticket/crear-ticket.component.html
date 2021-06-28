@@ -17,7 +17,7 @@
             <label>Estado</label>
             <select class="tipo" formControlName="estado">
                 <option value="">Selecciona un estado</option>
-                <option value="1">Abierto</option>
+                <option value="0">Abierto</option>
             </select>
             <div *ngIf="inputs.estado.errors?.required && inputs.estado.touched">Es necesario seleccionar un estado</div>
         </li>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Ticket} from "../../interfaces/ticket";
+import {Ticket,estados,categorias} from "../../interfaces/ticket";
 import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 
 @Component({
@@ -46,8 +46,9 @@ export class CrearTicketComponent implements OnInit {
   }
 
   crearTicket(){
-    this.estado="Abierto"
-    let ticketNuevo:Ticket={idTicket:0,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
+    let estadoString=estados[this.estado.value];
+    let categoriaString=categorias[this.categoria.value];
+    let ticketNuevo:Ticket={idTicket:0,categoria:categoriaString,asunto:this.asunto.value,estado:estadoString,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
     this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{
     });
     

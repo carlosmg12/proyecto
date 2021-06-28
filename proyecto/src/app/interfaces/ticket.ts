@@ -1,18 +1,13 @@
 export interface Ticket {
     idTicket : number;
-    estado : number; 
-    /*-- Estado:0 Cerrado 
-                1 En Desarrollo
-                2 Abierto
-    --*/ 
+    estado : string; 
     prioridad : number;
-    /*-- Prioridad: 1 Baja 
-                    2 Media
-                    3 Alta
-    --*/
     idUsuario : number; 
     asunto : string;
     descripcion : string; 
-    categoria : number;
+    categoria : string;
     respuesta: string;
 }
+
+export let estados = ["Abierto","En desarrollo","Cerrado"];
+export let categorias = ["Solicitud genérica","Solicitud de cambio","Incidente","Problema","Solicitud de hardware","Solicitud de software nuevo"];
