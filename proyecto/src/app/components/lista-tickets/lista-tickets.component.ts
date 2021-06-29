@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { ServicioUsuarioService } from "../../servicios/servicio-usuario.service";
-import { Ticket } from "../../interfaces/ticket"
+import { Ticket, estados} from "../../interfaces/ticket"
 @Component({
   selector: 'app-lista-tickets',
   templateUrl: './lista-tickets.component.html',
@@ -38,6 +38,7 @@ export class ListaTicketsComponent implements OnInit {
     
     this.servicioUsuario.listarTickets().subscribe(datos=>{
       for(let i=0;i<datos.length;i++){
+        datos[i].estado=estados[i];
         this.listaTickets.push(datos[i]);
       }
     });

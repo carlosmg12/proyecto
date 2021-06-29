@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import { Ticket } from "../../interfaces/ticket";
+import { Ticket,estados } from "../../interfaces/ticket";
 import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 
 @Component({
@@ -26,6 +26,7 @@ export class MisTicketsComponent implements OnInit {
     });
     this.servicio.obtenerTicketsUsuario(this.idUsuario).subscribe(datos=>{
       for(let i=0;i<datos.length;i++){
+        datos[i].estado=estados[i];
         this.listaTickets.push(datos[i]);
       }
     });
