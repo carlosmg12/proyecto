@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { InterfazUsuarioComponent } from './components/interfaz-usuario/interfaz-usuario.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { BuscadorPipe } from './pipes/buscador.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     EditarTicketComponent,
     MisTicketsComponent,
     InterfaceAdminComponent,
-    InterfazUsuarioComponent
+    InterfazUsuarioComponent,
+    BuscadorPipe
   ],
   imports: [
     BrowserModule,

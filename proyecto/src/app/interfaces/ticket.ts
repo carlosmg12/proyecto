@@ -1,6 +1,6 @@
 export interface Ticket {
     idTicket : number;
-    estado : string; 
+    estado : number; 
     prioridad : number;
     idUsuario : number; 
     asunto : string;

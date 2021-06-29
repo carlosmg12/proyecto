@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Ticket,estados,categorias} from "../../interfaces/ticket";
+import {Ticket,categorias} from "../../interfaces/ticket";
 import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 
 @Component({
@@ -24,7 +24,7 @@ export class CrearTicketComponent implements OnInit {
     this.formulario=this.fb.group({
       categoria:["",[Validators.required]],
       asunto:["",[Validators.required,Validators.maxLength(300)]],
-      estado:["",[Validators.required]],
+      estado:["",],
       descripcion:["",[Validators.required,Validators.maxLength(300)]],
       prioridad:["",[Validators.required]],
     });
@@ -40,15 +40,14 @@ export class CrearTicketComponent implements OnInit {
     });
     this.categoria=this.formulario.get("categoria") as FormGroup;
     this.asunto=this.formulario.get("asunto") as FormGroup;
-    //this.estado=this.formulario.get("estado") as FormGroup;
     this.descripcion=this.formulario.get("descripcion") as FormGroup;
     this.prioridad=this.formulario.get("prioridad") as FormGroup;
   }
 
   crearTicket(){
-    let estadoString=estados[this.estado.value];
+    console.log("idusuario crear",this.idUsuario);
     let categoriaString=categorias[this.categoria.value];
-    let ticketNuevo:Ticket={idTicket:0,categoria:categoriaString,asunto:this.asunto.value,estado:estadoString,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
+    let ticketNuevo:Ticket={idTicket:0,categoria:categoriaString,asunto:this.asunto.value,estado:0,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
     this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{
     });
     

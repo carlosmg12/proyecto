@@ -10,8 +10,6 @@ import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 })
 export class HomeComponent implements OnInit {
 
-  //siteKey:string;
-
   formulario:FormGroup;
   correo:any;
   contrasena:any;
@@ -19,9 +17,6 @@ export class HomeComponent implements OnInit {
   remember:any;
 
   constructor(public fb:FormBuilder,private servicio:ServicioUsuarioService,private ruta:Router) { 
-    //this.siteKey="6Lfw3VsbAAAAAKonUNmHAQqd2ejXo12n-KOkWioE";
-    //this.siteKey='6LdRNVwbAAAAAEEfvhSOwCG3WLOE8V74XuAz1v9Q';
-    //this.siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
     this.formulario=this.fb.group({
       correo:["",[Validators.required,Validators.maxLength(100)]],
       contrasena:["",[Validators.required,Validators.maxLength(200)]],
@@ -42,7 +37,6 @@ export class HomeComponent implements OnInit {
       else{
         this.ruta.navigate([`/interfazadmin/${datos.idUsuario}`]);
       }
-      //window.location.href="/registro";
     }
   }
 

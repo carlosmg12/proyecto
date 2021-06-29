@@ -20,4 +20,8 @@ export class InterfaceAdminComponent implements OnInit {
   listaTickets(){
     this.router.navigate(["/listatickets"]);
   }
+
+  listaUsuarios(){
+    this.router.navigate(["/listausuarios"]);
+  }
 }

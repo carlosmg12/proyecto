@@ -39,7 +39,10 @@ export class ServicioUsuarioService {
   obtenerTicket(idTicket:number):Observable<any>{
     return this.servicio.get(`${this.servidor}/obtenerTicket/${idTicket}`);
   }
-
+  
+  obtenerTicketsUsuario(idUsuario:number):Observable<any>{
+    return this.servicio.get(`${this.servidor}/obtenerTicketsUsuario/${idUsuario}`);
+  }
   obtenerUsuario(idUsuario:number):Observable<any>{
     return this.servicio.get(`${this.servidor}/obtenerUsuario/${idUsuario}`);
   }
@@ -55,7 +58,7 @@ export class ServicioUsuarioService {
 
   crearTicket(ticket:Ticket):Observable<any>{
     console.log(`${this.servidor}/crearTicket/:${ticket.idUsuario}`);
-    return this.servicio.post(`${this.servidor}/crearTicket/:${ticket.idUsuario}`,JSON.stringify(ticket),httpOptions);
+    return this.servicio.post(`${this.servidor}/crearTicket/${ticket.idUsuario}`,JSON.stringify(ticket),httpOptions);
   }
 
   actualizarTicket(ticket:Ticket):Observable<any>{

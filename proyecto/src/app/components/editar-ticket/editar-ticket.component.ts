@@ -24,6 +24,7 @@ export class EditarTicketComponent implements OnInit {
   constructor(public fb:FormBuilder,private ruta:ActivatedRoute,private servicio:ServicioUsuarioService) {
     console.log("ticket sin editar",this.servicio.ticketEditar[0]);
     this.formulario=this.fb.group({
+      
       categoria:[this.servicio.ticketEditar[0].categoria,[Validators.required]],
       asunto:[this.servicio.ticketEditar[0].asunto,[Validators.required,Validators.maxLength(300)]],
       estado:[this.servicio.ticketEditar[0].estado,[Validators.required]],
@@ -54,8 +55,7 @@ export class EditarTicketComponent implements OnInit {
   }
 
   editarTicket(){
-    let estadoString=estados[this.estado.value];
-    let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:estadoString,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
+    let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
     console.log("ticket listo para actualizar",ticketNuevo);
     this.servicio.actualizarTicket(ticketNuevo).subscribe(datos=>{
       console.log(datos);
