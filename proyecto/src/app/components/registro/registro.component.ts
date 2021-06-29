@@ -19,7 +19,6 @@ export class RegistroComponent implements OnInit {
   comuna:any;
   correo:any;
   contrasena:any;
-
   cities:Array<any> = [];
 
   countries = [{
@@ -95,11 +94,8 @@ export class RegistroComponent implements OnInit {
   }
 
   crearUsuario(){
-    console.log("region",this.region);
     let usuarioNuevo:Usuario={idUsuario:0,nombre:this.nombre.value,apellido:this.apellido.value,rut:this.rut.value,direccion:this.direccion.value,region:this.region,comuna:this.comuna.value,correo:this.correo.value,contrasena:this.contrasena.value,rol:"usuarioCliente"};
-    console.log("usuario",usuarioNuevo);
     this.servicio.crearUsuario(usuarioNuevo).subscribe(datos=>{
-      console.log("datos",datos);
     });
   }
 

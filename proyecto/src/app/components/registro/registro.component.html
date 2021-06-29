@@ -19,11 +19,11 @@
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre *" value="" />
+                                                <input type="text" formControlName="nombre" class="form-control" placeholder="Nombres *" value="" />
                                                 <div *ngIf="inputs.nombre.errors?.required && inputs.nombre.touched">Es necesario ingresar un nombre</div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" formControlName="apellido" class="form-control" placeholder="Apellido *" value="" />
+                                                <input type="text" formControlName="apellido" class="form-control" placeholder="Apellidos *" value="" />
                                                 <div *ngIf="inputs.apellido.errors?.required && inputs.apellido.touched">Es necesario ingresar un apellido</div>
                                             </div>
                                             <div class="form-group">
@@ -32,7 +32,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" formControlName="contrasena" class="form-control"  placeholder="Password *" value="" />
-                                                <div *ngIf="inputs.contrasena.errors?.required && inputs.contrasena.touched">Es necesario ingresar una contraseÃ±a</div>
+                                                <div *ngIf="inputs.contrasena.errors?.required && inputs.contrasena.touched">Es necesario ingresar una contraseña</div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="maxl">

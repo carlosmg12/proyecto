@@ -45,7 +45,6 @@ export class CrearTicketComponent implements OnInit {
   }
 
   crearTicket(){
-    console.log("idusuario crear",this.idUsuario);
     let categoriaString=categorias[this.categoria.value];
     let ticketNuevo:Ticket={idTicket:0,categoria:categoriaString,asunto:this.asunto.value,estado:0,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.idUsuario,respuesta:""};
     this.servicio.crearTicket(ticketNuevo).subscribe(datos=>{

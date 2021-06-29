@@ -41,8 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   ingresar(){
-    
-    console.log("remember",this.remember.value);
     this.servicio.validarLogin(this.correo.value,this.contrasena.value).subscribe(datos=>{
       if(datos.length==0){
         this.mensaje="Correo y/o contraseña incorrectos";

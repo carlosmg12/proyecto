@@ -23,7 +23,6 @@ export class ListaUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
-    console.log("datos admin",inicio);
     if(inicio.correo==undefined){
       window.location.href="/";
     }
@@ -31,7 +30,6 @@ export class ListaUsuariosComponent implements OnInit {
       for(let i=0;i<datos.length;i++){
         this.listaUsuarios.push(datos[i]);
       }
-      console.log("lista",this.listaUsuarios);
     });
     this.buscar=this.formulario.get("buscar") as FormGroup;
   }

@@ -21,18 +21,14 @@ export class ListaTicketsComponent implements OnInit {
 
   ngOnInit(): void {
     let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
-    console.log("datos admin",inicio);
     if(inicio.correo==undefined){
       window.location.href="/";
     }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idUsuario=parametros["idUsuario"];
-      console.log("idUsuario de esta pagina",this.idUsuario)
     });
     this.servicioUsuario.obtenerUsuario(this.idUsuario).subscribe(datos=>{
-      console.log("datos",datos[0]);
       this.usuarioActual=datos[0];
-      console.log("usuario",this.usuarioActual);
     });
     console.log("usuario1",this.usuarioActual);
     
@@ -42,7 +38,6 @@ export class ListaTicketsComponent implements OnInit {
         this.listaTickets.push(datos[i]);
       }
     });
-    console.log("lista",this.listaTickets);
   }
 
 

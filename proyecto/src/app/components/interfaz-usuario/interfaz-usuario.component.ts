@@ -16,13 +16,11 @@ export class InterfazUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
-    console.log("datos admin",inicio);
     if(inicio.correo==undefined){
       window.location.href="/";
     }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idUsuario=parametros["idUsuario"];
-      console.log("id cliente",this.idUsuario)
     });
   }
 

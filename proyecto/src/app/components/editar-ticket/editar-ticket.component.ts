@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {Ticket,estados} from "../../interfaces/ticket";
+import {Ticket} from "../../interfaces/ticket";
 import {ServicioUsuarioService} from "../../servicios/servicio-usuario.service"
 
 @Component({
@@ -22,9 +22,7 @@ export class EditarTicketComponent implements OnInit {
   idTicket:number=0;
 
   constructor(public fb:FormBuilder,private ruta:ActivatedRoute,private servicio:ServicioUsuarioService) {
-    console.log("ticket sin editar",this.servicio.ticketEditar[0]);
     this.formulario=this.fb.group({
-      
       categoria:[this.servicio.ticketEditar[0].categoria,[Validators.required]],
       asunto:[this.servicio.ticketEditar[0].asunto,[Validators.required,Validators.maxLength(300)]],
       estado:[this.servicio.ticketEditar[0].estado,[Validators.required]],
@@ -36,13 +34,11 @@ export class EditarTicketComponent implements OnInit {
 
   ngOnInit(): void {
     let inicio=JSON.parse(sessionStorage.getItem("session") || '{}');
-    console.log("datos admin",inicio);
     if(inicio.correo==undefined){
       window.location.href="/";
     }
     this.ruta2=this.ruta.params.subscribe(parametros=>{
       this.idTicket=parametros["idTicket"];
-      console.log("idticket justo antes de actualizar",this.idTicket)
     });
     this.categoria=this.formulario.get("categoria") as FormGroup;
     this.asunto=this.formulario.get("asunto") as FormGroup;
@@ -50,13 +46,11 @@ export class EditarTicketComponent implements OnInit {
     this.descripcion=this.formulario.get("descripcion") as FormGroup;
     this.prioridad=this.formulario.get("prioridad") as FormGroup;
     this.respuesta=this.formulario.get("respuesta") as FormGroup;
-    console.log("prioridad",this.prioridad);
-    console.log("estado",this.estado);
   }
 
   editarTicket(){
     let ticketNuevo:Ticket={idTicket:this.idTicket,categoria:this.categoria.value,asunto:this.asunto.value,estado:this.estado.value,descripcion:this.descripcion.value,prioridad:this.prioridad.value,idUsuario:this.servicio.ticketEditar[0].idUsuario,respuesta:this.respuesta.value};
-    console.log("ticket listo para actualizar",ticketNuevo);
+    
     this.servicio.actualizarTicket(ticketNuevo).subscribe(datos=>{
       console.log(datos);
     });
